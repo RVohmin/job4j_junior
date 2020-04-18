@@ -10,10 +10,7 @@ public class SimpleStack<T> {
     private final MyLinkedList<T> linked = new MyLinkedList<>();
 
     public T poll() {
-        T temp;
-        temp = linked.getLast();
-        linked.deleteLast();
-        return temp;
+        return linked.deleteLast();
     }
 
     public void push(T value) {
