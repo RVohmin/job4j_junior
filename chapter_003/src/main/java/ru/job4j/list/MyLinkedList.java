@@ -17,12 +17,12 @@ public class MyLinkedList<T> implements Iterable<T> {
     private int modCount = 0;
     private int size = 0;
 
-    public Node<T> getFirst() {
-        return first;
+    public T getFirst() {
+        return first.value;
     }
 
-    public Node<T> getLast() {
-        return last;
+    public T getLast() {
+        return last.value;
     }
 
     public static class Node<T> {

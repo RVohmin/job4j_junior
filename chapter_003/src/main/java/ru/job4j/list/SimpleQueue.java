@@ -10,7 +10,7 @@ public class SimpleQueue<T> {
     private final MyLinkedList<T> linkedList = new MyLinkedList<>();
 
     public T poll() {
-        T temp = linkedList.getFirst().value;
+        T temp = linkedList.getFirst();
         linkedList.deleteFirst();
         return temp;
     }
