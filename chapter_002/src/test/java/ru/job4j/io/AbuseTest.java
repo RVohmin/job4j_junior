@@ -1,14 +1,13 @@
 package ru.job4j.io;
 
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.is;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.*;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class AbuseTest {
     @Rule
@@ -26,6 +25,6 @@ public class AbuseTest {
         try (BufferedReader in = new BufferedReader(new FileReader(target))) {
             in.lines().forEach(rsl::append);
         }
-        assertThat(rsl.toString(), is("hello dude "));
+        assertEquals(rsl.toString(), "hello dude ");
     }
 }

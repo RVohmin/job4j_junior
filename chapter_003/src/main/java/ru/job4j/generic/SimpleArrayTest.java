@@ -12,7 +12,7 @@ public class SimpleArrayTest {
         SimpleArray<Integer> simpleArray = new SimpleArray<>(5);
         simpleArray.add(1);
         int result = simpleArray.get(0);
-        assertThat(result, is(1));
+        assertEquals(1, result);
     }
 
     @Test
