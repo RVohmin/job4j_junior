@@ -1,6 +1,9 @@
 package ru.job4j.list;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * job4j_design ru.job4j.list.SimpleArray
@@ -48,62 +51,68 @@ public class MyLinkedList<T> implements Iterable<T> {
         modCount++;
     }
 
-    public void remove(int index) {
+    public T remove(int index) {
+        T removedValue;
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
         }
         if (size == 1) {
+            removedValue = first.value;
             clear();
-            return;
+            return removedValue;
         }
         if (index == size - 1) {
-            deleteLast();
-            return;
+            return deleteLast();
         }
         if (index == 0) {
-            deleteFirst();
-            return;
+            return deleteFirst();
         }
         Node<T> node = first;
         int count = 0;
         while (node.next != null) {
             if (count == index) {
+                removedValue = node.value;
                 node.previous.next = node.next;
                 node.next.previous = node.previous;
                 size--;
                 modCount++;
-                return;
+                return removedValue;
             }
             node = node.next;
             count++;
         }
+        return null;
     }
 
-    public void deleteLast() {
+    public T deleteLast() {
+        T valueLast = last.value;
         if (size == 1) {
             clear();
-            return;
+            return valueLast;
         }
         last = last.previous;
         last.next = null;
         size--;
         modCount++;
+        return valueLast;
     }
 
-    public void deleteFirst() {
+    public T deleteFirst() {
+        T valueFirst = first.value;
         if (size == 1) {
             clear();
-            return;
+            return valueFirst;
         }
         first = first.next;
         first.previous = null;
         size--;
         modCount++;
+        return valueFirst;
     }
 
     public T get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            throw new NoSuchElementException();
         }
         Node<T> result = first;
         for (int i = 0; i < index; i++) {

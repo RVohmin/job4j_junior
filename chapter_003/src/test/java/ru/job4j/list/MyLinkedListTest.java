@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -38,13 +39,13 @@ public class MyLinkedListTest {
         assertEquals(5, list.size());
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test(expected = NoSuchElementException.class)
     public void whenGetIndexOutOfBoundThenExcepted() {
         list.get(5);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void whenListEmptyAndGetFirstThenIndexOutOfBoundThenExcepted() {
+    @Test(expected = NoSuchElementException.class)
+    public void whenListEmptyAndGetFirstThenException() {
         list.clear();
         list.get(0);
     }
@@ -82,6 +83,7 @@ public class MyLinkedListTest {
         assertEquals(1f, list.get(0), 0.001);
         assertEquals(1, list.size());
     }
+
     @Test
     public void whenOneElementAndRemove() {
         list.clear();
@@ -110,5 +112,12 @@ public class MyLinkedListTest {
     @Test
     public void getLast() {
         assertEquals(5, list.getLast().value, 0.001);
+    }
+
+    @Test
+    public void whenRemoveThenReturnValue() {
+        assertEquals(1, list.remove(0), 0.001);
+        assertEquals(5, list.remove(3), 0.001);
+        assertEquals(3, list.remove(1), 0.001);
     }
 }
