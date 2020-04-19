@@ -14,15 +14,8 @@ import java.util.NoSuchElementException;
 public class SimpleList<T> implements Iterable<T> {
     private Node<T> first;
     private Node<T> last;
+    private int modCount = 0;
     private int size = 0;
-
-    public T getFirst() {
-        return first.value;
-    }
-
-    public T getLast() {
-        return last.value;
-    }
 
     public static class Node<T> {
         T value;
@@ -47,6 +40,7 @@ public class SimpleList<T> implements Iterable<T> {
             last = newNode;
         }
         size++;
+        modCount++;
     }
 
     public T remove(int index) {
@@ -73,6 +67,7 @@ public class SimpleList<T> implements Iterable<T> {
                 node.previous.next = node.next;
                 node.next.previous = node.previous;
                 size--;
+                modCount++;
                 return removedValue;
             }
             node = node.next;
@@ -90,6 +85,7 @@ public class SimpleList<T> implements Iterable<T> {
         last = last.previous;
         last.next = null;
         size--;
+        modCount++;
         return valueLast;
     }
 
@@ -102,6 +98,7 @@ public class SimpleList<T> implements Iterable<T> {
         first = first.next;
         first.previous = null;
         size--;
+        modCount++;
         return valueFirst;
     }
 
@@ -120,21 +117,22 @@ public class SimpleList<T> implements Iterable<T> {
         first = null;
         last = null;
         size = 0;
+        modCount++;
     }
 
-    public int size() {
+    public int getSize() {
         return size;
     }
 
     @Override
     public Iterator<T> iterator() {
-        final int expectedModCount = size;
+        final int expectedModCount = modCount;
         return new Iterator<>() {
             Node<T> node = first;
 
             @Override
             public boolean hasNext() {
-                if (expectedModCount != size) {
+                if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
                 return node != null;
@@ -168,6 +166,5 @@ public class SimpleList<T> implements Iterable<T> {
         list.add(1);
         list.add(2);
         list.add(3);
-
     }
 }

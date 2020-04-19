@@ -4,14 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ConcurrentModificationException;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
 
 public class SimpleListTest {
     SimpleList<Float> list = new SimpleList<>();
-    Iterator<Float> iterator = list.iterator();
 
     @Before
     public void initialize() {
@@ -36,7 +34,7 @@ public class SimpleListTest {
 
     @Test
     public void whenGetSizeThenReturnSizeList() {
-        assertEquals(5, list.size());
+        assertEquals(5, list.getSize());
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -53,16 +51,14 @@ public class SimpleListTest {
     @Test
     public void whenClearThenListSizeNull() {
         list.clear();
-        assertEquals(0, list.size());
+        assertEquals(0, list.getSize());
     }
 
     @Test(expected = ConcurrentModificationException.class)
     public void whenAddInIterationThenException() {
-        Iterator<Float> iterator = list.iterator();
-        while (iterator.hasNext()) {
+        for (Float aFloat : list) {
             list.add(7f);
             list.remove(5);
-            iterator.next();
         }
     }
 
@@ -73,7 +69,7 @@ public class SimpleListTest {
         assertEquals(2f, list.get(1), 0.001);
         assertEquals(4f, list.get(2), 0.001);
         assertEquals(5f, list.get(3), 0.001);
-        assertEquals(4, list.size());
+        assertEquals(4, list.getSize());
     }
 
     @Test
@@ -83,7 +79,7 @@ public class SimpleListTest {
         list.add(2f);
         list.remove(1);
         assertEquals(1f, list.get(0), 0.001);
-        assertEquals(1, list.size());
+        assertEquals(1, list.getSize());
     }
 
     @Test
@@ -91,7 +87,7 @@ public class SimpleListTest {
         list.clear();
         list.add(1f);
         list.remove(0);
-        assertEquals(0, list.size());
+        assertEquals(0, list.getSize());
     }
 
     @Test
@@ -99,21 +95,7 @@ public class SimpleListTest {
         list.clear();
         list.add(1f);
         list.remove(0);
-        assertEquals(0, list.size());
-    }
-
-    @Test
-    public void getFirst() {
-        list.clear();
-        list.add(1f);
-        assertEquals(1, list.getFirst(), 0.001);
-        list.deleteFirst();
-//        assertEquals(2, list.getFirst().value, 0.001);
-    }
-
-    @Test
-    public void getLast() {
-        assertEquals(5, list.getLast(), 0.001);
+        assertEquals(0, list.getSize());
     }
 
     @Test
