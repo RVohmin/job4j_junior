@@ -17,7 +17,7 @@ public class SimpleQueue<T> {
         list.add(value);
     }
 
-    public int getSise() {
+    public int size() {
         return list.getSize();
     }
 }
