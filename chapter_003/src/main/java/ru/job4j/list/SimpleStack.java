@@ -7,7 +7,7 @@ package ru.job4j.list;
  * @since 17.04.2020 23:32
  */
 public class SimpleStack<T> {
-    private final MyLinkedList<T> linked = new MyLinkedList<>();
+    private final SimpleList<T> linked = new SimpleList<>();
 
     public T poll() {
         return linked.deleteLast();

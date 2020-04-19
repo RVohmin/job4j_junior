@@ -9,8 +9,8 @@ import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
 
-public class MyLinkedListTest {
-    MyLinkedList<Float> list = new MyLinkedList<>();
+public class SimpleListTest {
+    SimpleList<Float> list = new SimpleList<>();
     Iterator<Float> iterator = list.iterator();
 
     @Before
@@ -58,8 +58,10 @@ public class MyLinkedListTest {
 
     @Test(expected = ConcurrentModificationException.class)
     public void whenAddInIterationThenException() {
+        Iterator<Float> iterator = list.iterator();
         while (iterator.hasNext()) {
             list.add(7f);
+            list.remove(5);
             iterator.next();
         }
     }

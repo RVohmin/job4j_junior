@@ -11,10 +11,9 @@ import java.util.NoSuchElementException;
  * @author romanvohmin
  * @since 15.04.2020 19:37
  */
-public class MyLinkedList<T> implements Iterable<T> {
+public class SimpleList<T> implements Iterable<T> {
     private Node<T> first;
     private Node<T> last;
-    private int modCount = 0;
     private int size = 0;
 
     public T getFirst() {
@@ -48,7 +47,6 @@ public class MyLinkedList<T> implements Iterable<T> {
             last = newNode;
         }
         size++;
-        modCount++;
     }
 
     public T remove(int index) {
@@ -75,7 +73,6 @@ public class MyLinkedList<T> implements Iterable<T> {
                 node.previous.next = node.next;
                 node.next.previous = node.previous;
                 size--;
-                modCount++;
                 return removedValue;
             }
             node = node.next;
@@ -93,7 +90,6 @@ public class MyLinkedList<T> implements Iterable<T> {
         last = last.previous;
         last.next = null;
         size--;
-        modCount++;
         return valueLast;
     }
 
@@ -106,7 +102,6 @@ public class MyLinkedList<T> implements Iterable<T> {
         first = first.next;
         first.previous = null;
         size--;
-        modCount++;
         return valueFirst;
     }
 
@@ -125,7 +120,6 @@ public class MyLinkedList<T> implements Iterable<T> {
         first = null;
         last = null;
         size = 0;
-        modCount++;
     }
 
     public int size() {
@@ -134,13 +128,13 @@ public class MyLinkedList<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        final int expectedModCount = modCount;
+        final int expectedModCount = size;
         return new Iterator<>() {
             Node<T> node = first;
 
             @Override
             public boolean hasNext() {
-                if (expectedModCount != modCount) {
+                if (expectedModCount != size) {
                     throw new ConcurrentModificationException();
                 }
                 return node != null;
@@ -170,7 +164,7 @@ public class MyLinkedList<T> implements Iterable<T> {
     }
 
     public static void main(String[] args) {
-        MyLinkedList<Integer> list = new MyLinkedList<>();
+        SimpleList<Integer> list = new SimpleList<>();
         list.add(1);
         list.add(2);
         list.add(3);

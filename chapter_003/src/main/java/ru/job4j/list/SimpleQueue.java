@@ -7,7 +7,7 @@ package ru.job4j.list;
  * @since 18.04.2020 00:19
  */
 public class SimpleQueue<T> {
-    private final MyLinkedList<T> linkedList = new MyLinkedList<>();
+    private final SimpleList<T> linkedList = new SimpleList<>();
 
     public T poll() {
         T temp = linkedList.getFirst();
