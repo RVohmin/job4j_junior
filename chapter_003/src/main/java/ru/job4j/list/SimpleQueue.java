@@ -18,6 +18,6 @@ public class SimpleQueue<T> {
     }
 
     public int size() {
-        return list.getSize();
+        return list.size();
     }
 }

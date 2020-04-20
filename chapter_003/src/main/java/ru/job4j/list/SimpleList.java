@@ -120,7 +120,7 @@ public class SimpleList<T> implements Iterable<T> {
         modCount++;
     }
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 
@@ -159,12 +159,5 @@ public class SimpleList<T> implements Iterable<T> {
             node = node.next;
         }
         return Arrays.toString(arr);
-    }
-
-    public static void main(String[] args) {
-        SimpleList<Integer> list = new SimpleList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
     }
 }

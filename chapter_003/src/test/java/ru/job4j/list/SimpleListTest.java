@@ -34,7 +34,7 @@ public class SimpleListTest {
 
     @Test
     public void whenGetSizeThenReturnSizeList() {
-        assertEquals(5, list.getSize());
+        assertEquals(5, list.size());
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -51,7 +51,7 @@ public class SimpleListTest {
     @Test
     public void whenClearThenListSizeNull() {
         list.clear();
-        assertEquals(0, list.getSize());
+        assertEquals(0, list.size());
     }
 
     @Test(expected = ConcurrentModificationException.class)
@@ -69,7 +69,7 @@ public class SimpleListTest {
         assertEquals(2f, list.get(1), 0.001);
         assertEquals(4f, list.get(2), 0.001);
         assertEquals(5f, list.get(3), 0.001);
-        assertEquals(4, list.getSize());
+        assertEquals(4, list.size());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class SimpleListTest {
         list.add(2f);
         list.remove(1);
         assertEquals(1f, list.get(0), 0.001);
-        assertEquals(1, list.getSize());
+        assertEquals(1, list.size());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class SimpleListTest {
         list.clear();
         list.add(1f);
         list.remove(0);
-        assertEquals(0, list.getSize());
+        assertEquals(0, list.size());
     }
 
     @Test
@@ -95,7 +95,7 @@ public class SimpleListTest {
         list.clear();
         list.add(1f);
         list.remove(0);
-        assertEquals(0, list.getSize());
+        assertEquals(0, list.size());
     }
 
     @Test
