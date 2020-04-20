@@ -32,7 +32,8 @@ public class CheckName {
     public boolean checkExt(Path file) throws Exception {
         boolean check = true;
         String template = args.fileName();
-        switch (args.getArguments()[4]) {
+        String argument = args.getArguments()[4];
+        switch (argument) {
             case "-m":
                 String regExp = maskToRegExp(template);
                 check = file.getFileName().toString().matches(regExp);
@@ -41,6 +42,7 @@ public class CheckName {
             case "-f":
                 check = file.getFileName().toString().matches(template);
                 break;
+            default: break;
         }
         return check;
     }

@@ -7,6 +7,6 @@ package ru.job4j.io.zip;
  * @version 1
  * @since 01.04.2020
  */
-public interface findable {
+public interface Findable {
     String getFileMask(String arg);
 }

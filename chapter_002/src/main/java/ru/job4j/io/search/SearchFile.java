@@ -49,8 +49,8 @@ public class SearchFile {
 
     public static void main(String[] args) throws Exception {
         if (args.length == 0) {
-            throw new IllegalStateException("arg must as example: java -jar find.jar -d c:/ -n *.txt -m -o log.txt, " +
-                    "where -m - finding by mack; либо -f - full name match; -r regular expression.");
+            throw new IllegalStateException("arg must as example: java -jar find.jar -d c:/ -n *.txt -m -o log.txt, "
+                    + "where -m - finding by mack; либо -f - full name match; -r regular expression.");
         }
         ArgCheck arguments = new ArgCheck(args);
         CheckName checkName = new CheckName(arguments);
