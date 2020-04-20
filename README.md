@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/RVohmin/job4j_junior.svg?branch=master)](https://travis-ci.org/RVohmin/job4j_junior)
-[![codecov](https://codecov.io/gh/RVohmin/job4j_junior/branch/master/graph/badge.svg)](https://codecov.io/gh/RVohmin/job4j_junior)
+[![Build Status](https://travis-ci.org/RVohmin/job4j_junior.svg?branch=master)](https://travis-ci.org/RVohmin/job4j_junior)[![codecov](https://codecov.io/gh/RVohmin/job4j_junior/branch/master/graph/badge.svg)](https://codecov.io/gh/RVohmin/job4j_junior)
 
 # job4j Level JUNIOR
 Решение прикладных задач на Java с изучением и применением на практике:
